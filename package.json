@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/MrWebMD/NoSpamBot#readme",
   "dependencies": {
-    "discord.js": "^12.5.3",
+    "discord.js": "12.5.3",
     "dotenv": "^16.0.0",
     "hjson": "^3.2.2",
     "redux": "^4.1.2"
