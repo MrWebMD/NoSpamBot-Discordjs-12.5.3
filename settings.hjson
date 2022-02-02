@@ -17,7 +17,7 @@
     # This is useful for log channels, admin channels,
     # or channels which are meant for bot commands
 
-    "whitelistedChannels": [ # working in 12.5.3
+    "whitelistedChannels": [
       "560848218288685108", # LOCKE announcements
     ],
 
@@ -26,7 +26,7 @@
     # send phishing links and are generally
     # good citizens. The bot will ignore them.
 
-    "whitelistedRoles": [ # working in 12.5.3
+    "whitelistedRoles": [
       "561708861182967828", # LOCKE member
       "560853147367505943", # LOCKE staff
     ],
@@ -34,7 +34,7 @@
     # Good citizens that the spambot will ignore.
     # List of individual user ID's
 
-    "whitelistedUsers": [ #working in 12.5.3
+    "whitelistedUsers": [
       "283121554043437057", # Loaf
     ]
   },
