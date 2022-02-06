@@ -52,9 +52,9 @@ const defangMessageLinks = (message) => {
   for (link of messageLinks) {
     var thirdLinkLength = Math.floor(link.length / 3);
     var thirdOfLink = link.substr(thirdLinkLength, thirdLinkLength);
-    var newLink = link.replaceAll(thirdOfLink, ".".repeat(thirdLinkLength));
+    var newLink = link.split(thirdOfLink).join(".".repeat(thirdLinkLength))
 
-    defangedText = defangedText.replaceAll(link, newLink);
+    defangedText = defangedText.split(link).join(newLink)
   }
 
   return defangedText;

@@ -1,5 +1,6 @@
 const quarantineMessage = require('./quarantineMessage.js');
 const flagMessage = require('./flagMessage.js');
+const tempMute = require('./tempMute.js');
 
 const mitigationEngine = (messageStore, settings) => {
   const messageCache = messageStore.getState();
@@ -12,9 +13,23 @@ const mitigationEngine = (messageStore, settings) => {
   const { duplicates, mentionsEveryoneWithLinks, linkSpray } =
    settings.modules;
 
+  var alreadyMutedAuthors = [];
+
   for (message of messageCache.flaggedMessages) {
     if (message.tags.includes("ARCHIVED")) {
       continue;
+    }
+
+    const { id: authorId } = message.author;
+
+    // Every offending author gets a temp mute.
+    
+    if (!alreadyMutedAuthors.includes(authorId)) {
+    
+      tempMute(message, settings);
+    
+      alreadyMutedAuthors.push(authorId);
+    
     }
 
     /**

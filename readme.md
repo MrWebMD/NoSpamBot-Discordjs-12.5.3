@@ -44,6 +44,16 @@ Array of role Ids that the bot will ignore. An example of something to use there
 ##### cache.whitelistedUsers
 Array of user Ids that the bot will ignore. These users are generally good, upstanding citizens who can be trusted to not spam.
 
+## Mitigation Settings
+##### mitigations.mutedRoleId
+The muted role id to be appended to an author when their message gets flagged as spam.
+##### mitigations.muteTime
+Time in milliseconds that the author with a flagged message will be muted for.  
+
+## Module Settings
+### duplicates 🤖
+
+This module tags "DUPLICATE" to any message that appears more than once (as specified in settings.hjson). 
 
 ## Module Settings
 ### duplicates 🤖

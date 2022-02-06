@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 const messageStore = require("./store/messageStore.js");
-const storeLogger = require('./store/storeLogger.js');
+const storeLogger = require("./store/storeLogger.js");
 const cacheActions = require("./store/actions/cacheActions.js");
 const mitigationEngine = require("./mitigations/mitigationEngine.js");
 const readFile = require("./helpers/read-file.js");
