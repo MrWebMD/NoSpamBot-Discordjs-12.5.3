@@ -1,7 +1,19 @@
+/**
+ *
+ * @param {Object} messages Discord message object
+ * @param {Number} maxAge Time in milliseconds
+ * @returns Array of discord message objects that are younger than the max age.
+ */
 const removeOldMessages = (messages, maxAge) => {
   return messages.filter((message) => getMessageAge(message) <= maxAge);
 };
 
+/**
+ *
+ * @param {Object} message Discord message object
+ * @param {Array} messages Array of discord message objects
+ * @returns Array of messages that have the same content
+ */
 const getMessageDuplicates = (message, messages) => {
   return messages
     .filter(
@@ -11,6 +23,12 @@ const getMessageDuplicates = (message, messages) => {
     .map((message) => message.id);
 };
 
+/**
+ *
+ * @param {Object} message Discord message object
+ * @param {Array} messages Array of discord message objects
+ * @returns Array of discord message object that are duplicates, that are also sent from the message author
+ */
 const getMessageDuplicatesByAuthor = (message, messages) => {
   return getMessageDuplicates(
     message,
@@ -18,6 +36,10 @@ const getMessageDuplicatesByAuthor = (message, messages) => {
   );
 };
 
+/**
+ *
+ * @param {Array} messages Array of discord message objects (modified with a .tags[] property)
+ */
 const messagesToTable = (messages) => {
   /**
    * Logs out an array of processed
@@ -40,10 +62,20 @@ const messagesToTable = (messages) => {
   console.log("");
 };
 
+/**
+ * 
+ * @param {Object} message Discord message object 
+ * @returns Array of links found the in message content
+ */
 const getMessageLinks = (message) => {
   return message.content.match(/((https?:\/\/)?[^\s.]+\.[\w][^\s]+)/g) || [];
 };
 
+/**
+ * 
+ * @param {Object} message Discord message object
+ * @returns Message content with censored links.
+ */
 const defangMessageLinks = (message) => {
   const messageLinks = getMessageLinks(message);
 
@@ -60,20 +92,42 @@ const defangMessageLinks = (message) => {
   return defangedText;
 };
 
+/**
+ * 
+ * @param {Object} message Discord message object
+ * @param {String} tag The tag describing the message content
+ */
 const tagMessage = (message, tag) => {
   if (!message.tags.includes(tag)) {
     message.tags.push(tag);
   }
 };
+
+/**
+ * 
+ * @param {Array} messages Discord message objects 
+ * @param {String} tag The tag describing the message content
+ */
 const tagMessages = (messages, tag) => {
   messages.map((message) => {
     tagMessage(message, tag);
   });
 };
+
+/**
+ * 
+ * @param {Object} message Discord message object
+ * @returns Boolean If the message has an embed
+ */
 const messageHasEmbeds = (message) => {
   return message.embeds.length > 0;
 };
 
+/**
+ * 
+ * @param {Object} message Discord message object
+ * @returns Number Time in milliseconds that the message has existed
+ */
 const getMessageAge = (message) => {
   return Date.now() - message.createdTimestamp;
 };
